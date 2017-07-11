@@ -1,11 +1,15 @@
 function showPic( whichPic)
 {
     var source = whichPic.getAttribute("href");
+    if(!source) return true;
     var placeholder = document.getElementById("placeholder");
+    if(!placeholder) return true;
     placeholder.setAttribute("src", source);
     var text = whichPic.getAttribute("title");
+    if(!text) return true;
     var description = document.getElementById("description");
     description.firstChild.nodeValue = text;
+    return false;
 }
 
 function prepareGallery()
@@ -20,11 +24,26 @@ function prepareGallery()
     {
         links[i].onclick = function ()
         {
-            showPic(this);
-            return false;
+           return showPic(this);
+        }
+    }
+}
+
+function addLoadEvent(func)
+{
+    var oldLoadFuc = window.onload;
+    if(typeof window.onload != 'function')
+    {
+        window.onload = func;
+    }
+    else
+    {
+        window.onload = function(){
+            oldLoadFuc();
+            func();
         }
     }
 }
 
 
-window.onload = prepareGallery;
+addLoadEvent (prepareGallery);
