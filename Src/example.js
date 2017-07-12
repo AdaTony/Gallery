@@ -46,4 +46,29 @@ function addLoadEvent(func)
 }
 
 
+function addElemet()
+{
+    var para = document.createElement("p");
+
+    var txt = document.createTextNode("This is ");
+    
+    para.appendChild(txt);
+
+    var child2 = document.createElement("em");
+    var child2Txt = document.createTextNode("my");
+    child2.appendChild(child2Txt);
+    para.appendChild(child2);
+
+    var txt2 = document.createTextNode(" content.");
+    para.appendChild(txt2);
+
+    var parent= document.getElementById("testdiv");
+   // if(!parent) return false;
+
+    parent.appendChild(para);
+
+  //  return true;
+}
+
 addLoadEvent (prepareGallery);
+addLoadEvent (addElemet);
